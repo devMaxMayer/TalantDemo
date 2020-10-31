@@ -8,42 +8,40 @@ import { CurrentEvent } from './src/CurrentEvent'
 import SignIn from './src/SignIn';
 import { Router, Scene, Stack } from 'react-native-router-flux'
 import SignUp from './src/SignUp'
-
 export default function App() {
-    return (
-        <View style={styles.container}>
+  return (
+    <View style={styles.container}>
 
 
-
-            {/* Страница текущего эвента
+      {/* Страница текущего эвента
          <CurrentEvent name={'505 Fest'} date={'24 Dec 2020'} time={'15:30'}
                     type={'offline'} city={'Tumen'} place={'Tumen TechPark'}/>
      */}
 
-            {/* Страница выбора авторизации
-
+      {/* Страница выбора авторизации
+        
      */}
-            <Router>
+      <Router>
+        
+        <Stack key="root">
+          <Scene key="registration" component={Registration} title="Registration"/>
+          <Scene key="signIn" component={SignIn} title="Sign In"/> 
+          <Scene key="signUp" component={SignUp} title="Sign Up"/> 
+          <Scene key="toProfile" component={Profile}   title="Profile"/>    
+        </Stack>
+      </Router>
 
-                <Stack key="root">
-                    <Scene key="registration" component={Registration} title="Registration"/>
-                    <Scene key="signIn" component={SignIn} title="Sign In"/>
-                    <Scene key="signUp" component={SignUp} title="Sign Up"/>
-                    <Scene key="toProfile" component={Profile}   title="Profile"/>
-                </Stack>
-            </Router>
-
-            {/* <StatusBar barStyle="light-content" />
+        {/* <StatusBar barStyle="light-content" />
         <SignIn/> */}
-        </View>
-    )
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#ffffff',
-        flex: 1,
-    }
+  container: {
+    backgroundColor: '#ffffff',
+    flex: 1,
+  }
 })
 
 

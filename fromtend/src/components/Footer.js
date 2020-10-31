@@ -37,20 +37,26 @@ export const Footer = () => {
 
 const styles = StyleSheet.create ({
     footerContainer: {
+        height: '100%',
         width: '100%',
         flexDirection: "row",
-        position: 'absolute',
-        bottom:10,
-        justifyContent: "space-evenly"
+        //position: 'absolute',
+        
+        //bottom:10,
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     item: {
-        flex: 0.25,
-        paddingLeft: 30
+        flex: 1,
+        padding: 30,
+        flexDirection: "row",
+        alignItems:'center',
+        justifyContent: 'center'
     },
     image: { 
-        width: 34,
-        height: 34,
-        resizeMode:"contain"
+        flex: 1,
+
+        resizeMode: 'contain'
     }
 
 })

@@ -17,7 +17,7 @@ export default class SignIn extends Component{
 
     onLogin() {
         Alert.alert('Credentials', `${this.state.username} ${this.state.password}`);
-        Actions.toProfile({ name : 'Ivan Ivanov', city:'Tymen', age:'17', rate:'4730'});
+        Actions.toProfile({ guyName : 'Ivan Ivanov', city:'Tymen', age:'17', rate:'4730'});
     }
 
     onSignUp(){

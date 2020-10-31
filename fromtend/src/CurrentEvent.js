@@ -1,66 +1,77 @@
 import React from 'react'
 import { View, StyleSheet, Text, Image, TouchableOpacity  } from 'react-native'
+import { Actions } from 'react-native-router-flux';
 import {Footer} from './components/Footer';
 
-export const CurrentEvent = props => {
-    return (
-        <View style={styles.container}>
-            <View style={styles.event}>
-                <View style={{alignItems: "center", paddingTop:40}}>
-                    <Image style={styles.avatar}
-                           source={require('../img/event.png')}
-                           style={{ width: 120, height: 120}}
-                    />
-                    <Text style={styles.name}>{props.name}</Text>
-                    <Text style={styles.dateEvent}>{props.date} • {props.time} • {props.type}</Text>
-                    <Text style={styles.dateEvent}>{props.city} • {props.place}</Text>
-                    <TouchableOpacity style={styles.buttonDone} activeOpacity={0.5}>
-                        <Image
-                            source={require('../img/done.png')}
-                            style={styles.buttonImageIconStyle}
-                        />
-                        <View style={styles.buttonIconSeparatorStyle} />
-                        <Text style={styles.buttonText}>You’re attending</Text>
-                    </TouchableOpacity>
-                    <View style={styles.subTitle}>
-                        <Text style={styles.subTitleText} >Event Chat</Text>
-                    </View>
-                </View>
-            </View>
-            <View style={styles.eventsChats}>
-                <View style={styles.eventChat}>
-                    <View style={styles.logoEventChat} >
-                        <Image
-                               source={require('../img/leader.png')}
-                               style={{ width: 60, height: 60}}
-                        />
-                    </View>
-                    <View style={styles.EventChatName}>
-                        <Text style={{ }}>Arseny Nikitin
-                        </Text>
-                        <Text style={{ }}>Event Lead
-                        </Text>
-                    </View>
-                </View>
-                <View style={styles.eventChat}>
-                    <View style={styles.logoEventChat} >
-                        <Image
-                            source={require('../img/event.png')}
-                            style={{ width: 60, height: 60}}
-                        />
-                    </View>
-                    <View style={styles.EventChatName}>
-                        <Text style={{ }}>505 Fest
-                        </Text>
-                        <Text style={{ }}>Official Event Chat
-                        </Text>
-                    </View>
-                </View>
-            </View>
-            <Footer />
-        </View>
+export default class CurrentEvent extends React.Component {
+    constructor(props){       
+        super(props);
+        //this.props.eventItem.title = this.props.eventItem.text;
+        this.props.navigation.setParams({
+            title: this.props.eventItem.eventTitle,
+       });
+    }
 
-    )
+    render() {
+        return (
+            <View style={styles.container}>
+                <View style={styles.event}>
+                    <View style={{alignItems: "center", paddingTop:40}}>
+                        <Image style={styles.avatar}
+                               source={require('../img/event.png')}
+                               style={{ width: 120, height: 120}}
+                        />
+                        <Text style={styles.name}>{this.props.eventItem.eventTitle}</Text>
+                        <Text style={styles.dateEvent}>{this.props.eventItem.date} • {this.props.eventItem.time} • {this.props.eventItem.type}</Text>
+                        <Text style={styles.dateEvent}>{this.props.eventItem.city} • {this.props.eventItem.place}</Text>
+                        <TouchableOpacity style={styles.buttonDone} activeOpacity={0.5}>
+                            <Image
+                                source={require('../img/done.png')}
+                                style={styles.buttonImageIconStyle}
+                            />
+                            <View style={styles.buttonIconSeparatorStyle} />
+                            <Text style={styles.buttonText}>You’re attending</Text>
+                        </TouchableOpacity>
+                        <View style={styles.subTitle}>
+                            <Text style={styles.subTitleText} >Event Chat</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.eventsChats}>
+                    <View style={styles.eventChat}>
+                        <View style={styles.logoEventChat} >
+                            <Image
+                                   source={require('../img/leader.png')}
+                                   style={{ width: 60, height: 60}}
+                            />
+                        </View>
+                        <View style={styles.EventChatName}>
+                            <Text style={{ }}>Arseny Nikitin
+                            </Text>
+                            <Text style={{ }}>Event Lead
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.eventChat}>
+                        <View style={styles.logoEventChat} >
+                            <Image
+                                source={require('../img/event.png')}
+                                style={{ width: 60, height: 60}}
+                            />
+                        </View>
+                        <View style={styles.EventChatName}>
+                            <Text style={{ }}>505 Fest
+                            </Text>
+                            <Text style={{ }}>Official Event Chat
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+                <Footer />
+            </View>
+
+        );
+    }
 }
 
 const styles = StyleSheet.create ({
@@ -101,6 +112,10 @@ const styles = StyleSheet.create ({
         fontStyle: 'normal',
         fontSize: 17,
         lineHeight: 21,
+        textAlign: 'center',
+        //flex: 1,
+        flexDirection: "column",
+        flexWrap: 'wrap'
     },
     subTitle: {
         height: 300,
