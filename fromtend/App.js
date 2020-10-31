@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, StatusBar } from 'react-native'
 import { Header } from './src/components/Header'
 import Profile  from './src/Profile'
 import Registration from './src/Registration'
-import { CurrentEvent } from './src/CurrentEvent'
+import CurrentEvent from './src/CurrentEvent'
 import SignIn from './src/SignIn';
 import { Router, Scene, Stack } from 'react-native-router-flux'
 import SignUp from './src/SignUp'
@@ -27,7 +27,8 @@ export default function App() {
           <Scene key="registration" component={Registration} title="Registration"/>
           <Scene key="signIn" component={SignIn} title="Sign In"/> 
           <Scene key="signUp" component={SignUp} title="Sign Up"/> 
-          <Scene key="toProfile" component={Profile}   title="Profile"/>    
+          <Scene key="toProfile" component={Profile}   title="Profile"/>
+          <Scene key="toEvent" component={CurrentEvent}  />   
         </Stack>
       </Router>
 

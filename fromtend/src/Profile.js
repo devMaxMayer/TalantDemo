@@ -1,5 +1,7 @@
 import React, { useState} from 'react'
 import { View, StyleSheet, Text, Image, ScrollView, FlatList  } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Actions } from 'react-native-router-flux';
 import {Footer} from "./components/Footer";
 
 export default class Profile extends React.Component {
@@ -9,16 +11,20 @@ export default class Profile extends React.Component {
         
         this.state = { 
             items: [
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '1'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '2'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '3'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '4'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '5'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '6'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '7'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '8'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '1', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM \n (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '2', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '3', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '4', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '5', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '6', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '7', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '8', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
             ]
         };
+    }
+
+    onEventClicked(event){
+        Actions.toEvent({eventItem: event});
     }
 
     render() {
@@ -30,7 +36,7 @@ export default class Profile extends React.Component {
                                source={require('../img/avatar.png')}
                                style={{ width: 120, height: 120}}
                         />
-                        <Text style={styles.name}>{this.props.name}</Text>
+                        <Text style={styles.name}>{this.props.guyName}</Text>
                         <Text style={styles.bio}>{this.props.city}, Rus • {this.props.age} years</Text>
                         <Text style={styles.rate}> {this.props.rate} rate </Text>
                      </View>
@@ -41,16 +47,16 @@ export default class Profile extends React.Component {
                     <FlatList style={styles.itemsContainer} 
                               data={this.state.items}
                               renderItem={({item}) => (
-                                <View style={styles.item}>
+                                <TouchableOpacity style={styles.item} onPress={() => this.onEventClicked(item)}>
                                     <View style={styles.itemText}>
-                                        <Text style={styles.itemTitle}>{item.text}</Text>
+                                        <Text style={styles.itemTitle}>{item.eventTitle}</Text>
                                         <Text style={styles.itemResult}>{item.place} Place</Text>
                                     </View>
 
                                     <View style={styles.itemRate}>
                                         <Text style={{color : "#14B571"}}>{item.rate} </Text>
                                     </View>
-                                </View>
+                                </TouchableOpacity>
                                 )}>
                                 
                             
@@ -173,7 +179,8 @@ const styles = StyleSheet.create ({
         },
         shadowOpacity: 0.39,
         shadowRadius: 8.30,
-        elevation: 13,
+        //elevation: 13,
         marginTop: 4,
+        
     }
 })
