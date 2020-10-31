@@ -9,18 +9,19 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MessageDto {
     private String messageText;
+    private UserDto user;
 
-    public Message toMessage(){
-       Message message = new Message();
-       message.setMessage(messageText);
-
+    public Message toMessage() {
+        Message message = new Message();
+        message.setMessage(messageText);
+        message.setUser(user.toUser());
         return message;
     }
 
-    public static MessageDto fromMassage(Message massage) {
-       MessageDto messageDto = new MessageDto();
-       messageDto.setMessageText(massage.getMessage());
-
+    public static MessageDto fromMassage(Message message) {
+        MessageDto messageDto = new MessageDto();
+        messageDto.setMessageText(message.getMessage());
+        messageDto.setUser(UserDto.fromUser(message.getUser()));
         return messageDto;
     }
 }

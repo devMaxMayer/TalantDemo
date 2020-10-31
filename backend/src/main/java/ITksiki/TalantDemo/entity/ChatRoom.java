@@ -15,10 +15,20 @@ import java.util.Collection;
 @Entity
 @Table(name = "chat_room", schema = "public", catalog = "talant")
 public class ChatRoom extends BaseEntity {
+    private String name;
     private User creatorUser;
     private ChatRoomType chatRoomType;
     private Collection<ChatRoomUser> chatRoomUsers;
     private Collection<Message> messages;
+
+    @Transient
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @ManyToOne
     @JoinColumn(name = "id_creator_user", referencedColumnName = "id", nullable = false)
