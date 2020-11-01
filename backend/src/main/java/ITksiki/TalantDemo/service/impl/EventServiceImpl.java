@@ -66,11 +66,11 @@ public class EventServiceImpl implements EventService {
         }
         return eventRepository.save(event);
     }
-
-    @Override
-    public Set<User> getSubscribers(Event event) {
-        return userRepository.findByEvent(event);
-    }
+//
+//    @Override
+//    public Set<User> getSubscribers(Event event) {
+//        return userRepository.findByEvent(event);
+//    }
 
 
 }

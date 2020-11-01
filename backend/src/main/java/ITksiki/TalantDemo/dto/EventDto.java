@@ -1,13 +1,11 @@
 package ITksiki.TalantDemo.dto;
 
 import ITksiki.TalantDemo.entity.Event;
-import ITksiki.TalantDemo.entity.EventType;
-import ITksiki.TalantDemo.entity.User;
-import ITksiki.TalantDemo.entity.UserEvent;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-import java.util.Collection;
+
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)

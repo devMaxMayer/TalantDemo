@@ -18,6 +18,6 @@ public interface EventService {
 
     Event changeSubscribe(Event event, User user);
 
-    Set<User> getSubscribers(Event event);
+    //Set<User> getSubscribers(Event event);
 
 }

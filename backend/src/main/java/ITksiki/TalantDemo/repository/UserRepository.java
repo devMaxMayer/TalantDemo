@@ -14,7 +14,7 @@ import java.util.Set;
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByName(String username);
 
-    Set<User> findByEvent(Event event);
+    //Set<User> findByEvent(Event event);
 
     @Modifying
     @Query(nativeQuery = true, value = "update user set status = :status where id = :id")
