@@ -16,8 +16,26 @@ export default class SignIn extends Component{
     }
 
     onLogin() {
-        Alert.alert('Credentials', `${this.state.username} ${this.state.password}`);
-        Actions.toProfile({ guyName : 'Ivan Ivanov', city:'Tymen', age:'17', rate:'4730'});
+        let username = this.state.username;
+        let password = this.state.password;
+
+        fetch("http://10.0.2.2:8090/api/v1/auth/login", {
+            method: "POST",
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            })
+        })
+            .then((response) => response.json())
+            .then((responseData) => {
+                Alert.alert(
+                    "Login Success!",
+                    "Click the button to get a Chuck Norris quote!"
+                ),
+
+                Actions.toProfile({ guyName : 'Ivan Ivanov', city:'Tymen', age:'17', rate:'4730'});
+            })
+            .done();
     }
 
     onSignUp(){
@@ -28,29 +46,29 @@ export default class SignIn extends Component{
         Alert.alert('Gotta remember your password');
     }
     onChanged(item){
-        this.setState(item); 
+        this.setState(item);
     }
 
     render(){
         return (
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.headerText}>Sign In</Text>                   
+                    <Text style={styles.headerText}>Sign In</Text>
                         <Form onInputChanged={this.onChanged.bind(this)}/>
                     <TouchableOpacity onPress={this.onForgotPassword.bind(this)}>
                         <Text style={{color: 'blue'}}>Forgot your password?</Text>
                     </TouchableOpacity>
                 </View>
-                
+
                 <View style={styles.submitContainer}>
-                    <TouchableOpacity style={styles.signInButton}             
+                    <TouchableOpacity style={styles.signInButton}
                       onPress={this.onLogin.bind(this)}
                     >
                         <Text style={styles.buttonContent}>Sign In</Text>
                     </TouchableOpacity>
                     <View style={styles.noAccount}>
                         <Text>Don't have an account? </Text>
-                        
+
                         <TouchableOpacity onPress={this.onSignUp.bind(this)}>
                             <Text style={{color: 'blue'}}>Sign up</Text>
                         </TouchableOpacity>
@@ -95,18 +113,18 @@ const styles = StyleSheet.create({
     },
     submitContainer: {
         //width: 200,
-        
+
         //padding: 10,
         marginBottom: 20,
-        
+
     },
     signInButton: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#4BA8EE', 
+        backgroundColor: '#4BA8EE',
         height: 50,
         alignContent: 'center',
-        justifyContent: 'center'      
+        justifyContent: 'center'
     },
     buttonContent: {
         fontFamily: 'Roboto',
