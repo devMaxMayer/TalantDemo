@@ -1,11 +1,8 @@
 package ITksiki.TalantDemo.service.impl;
 
 
-import ITksiki.TalantDemo.entity.Role;
-import ITksiki.TalantDemo.entity.User;
-import ITksiki.TalantDemo.entity.UserRole;
+import ITksiki.TalantDemo.entity.*;
 import ITksiki.TalantDemo.enums.Status;
-import ITksiki.TalantDemo.repository.RoleRepository;
 import ITksiki.TalantDemo.repository.UserRepository;
 import ITksiki.TalantDemo.repository.UserRoleRepository;
 import ITksiki.TalantDemo.security.jwt.JwtUser;
@@ -18,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Slf4j
@@ -26,6 +24,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
@@ -96,4 +95,5 @@ public class UserServiceImpl implements UserService {
         JwtUser jwtUser = (JwtUser) auth.getPrincipal();
         return findById(jwtUser.getId());
     }
+
 }

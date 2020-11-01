@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
@@ -29,6 +30,7 @@ public class User extends BaseEntity {
     private Timestamp update;
     private Status status;
     private Collection<UserRole> userRoles;
+    private Set<Event> events;
 
     @Basic
     @Column(name = "name")
@@ -136,5 +138,17 @@ public class User extends BaseEntity {
             return CollectionUtils.emptyCollection();
         }
         return userRoles.stream().map(ur -> ur.getRole()).collect(Collectors.toList());
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_event",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "event_id", referencedColumnName = "id")})
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
     }
 }

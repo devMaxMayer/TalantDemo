@@ -27,13 +27,4 @@ public class UserEvent extends BaseEntity {
         this.user = userByUserId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "event_id", referencedColumnName = "id", nullable = false)
-    public Event getEvent() {
-        return event;
-    }
-
-    public void setEvent(Event eventByEventId) {
-        this.event = eventByEventId;
-    }
 }

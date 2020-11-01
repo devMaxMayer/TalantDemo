@@ -5,6 +5,7 @@ import ITksiki.TalantDemo.entity.Event;
 import ITksiki.TalantDemo.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface EventService {
     List<Event> findAll();
@@ -15,6 +16,8 @@ public interface EventService {
 
     void deleteById(Long id);
 
-    Event ChangeSubscription (Event event, User user);
+    Event changeSubscribe(Event event, User user);
+
+    Set<User> getSubscribers(Event event);
 
 }

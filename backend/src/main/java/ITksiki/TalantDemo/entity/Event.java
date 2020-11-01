@@ -7,6 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -18,7 +19,7 @@ public class Event extends BaseEntity {
     private String name;
     private String status;
     private EventType eventType;
-    private Collection<UserEvent> userEvents;
+    private Set<User> users;
 
     @Basic
     @Column(name = "name")
@@ -50,12 +51,12 @@ public class Event extends BaseEntity {
         this.eventType = eventTypeByIdEventType;
     }
 
-    @OneToMany(mappedBy = "event")
-    public Collection<UserEvent> getUserEvents() {
-        return userEvents;
+    @ManyToMany (mappedBy = "events", fetch = FetchType.LAZY)
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setUserEvents(Collection<UserEvent> userEventsById) {
-        this.userEvents = userEventsById;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

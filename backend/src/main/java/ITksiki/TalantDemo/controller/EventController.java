@@ -4,11 +4,13 @@ import ITksiki.TalantDemo.dto.EventDto;
 import ITksiki.TalantDemo.entity.Event;
 import ITksiki.TalantDemo.entity.User;
 import ITksiki.TalantDemo.service.EventService;
+import ITksiki.TalantDemo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,15 +24,20 @@ import java.util.List;
 public class EventController {
 
     private final EventService eventService;
+    private final UserService userService;
 
     @Autowired
-    public EventController(EventService eventService) {
+    public EventController(EventService eventService, UserService userService) {
         this.eventService = eventService;
+        this.userService = userService;
     }
 
     @PostMapping("subscribe-event")
-    public void subscribeEvent(@RequestBody Long idEvent) {
-
+    public Event subscribeEvent(
+            @AuthenticationPrincipal User user,
+            @PathVariable(name = "id") Event event
+    ) {
+        return eventService.changeSubscribe(event, user);
     }
 
     @GetMapping("all-events")
@@ -64,18 +71,18 @@ public class EventController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         this.eventService.deleteById(id);
-        return new ResponseEntity <>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("add-event")
-    public ResponseEntity<Event> addEvent(@RequestBody @Valid Event event){
+    public ResponseEntity<Event> addEvent(@RequestBody @Valid Event event) {
         HttpHeaders headers = new HttpHeaders();
 
-        if (event == null){
+        if (event == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         this.eventService.save(event);
-        return new ResponseEntity<>(event,headers,HttpStatus.OK);
+        return new ResponseEntity<>(event, headers, HttpStatus.OK);
     }
 
 
