@@ -2,7 +2,7 @@ import React, { useState} from 'react'
 import { View, StyleSheet, Text, Image, ScrollView, FlatList  } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Actions } from 'react-native-router-flux';
-import {Footer} from "./components/Footer";
+import Footer from "./components/Footer";
 
 export default class Profile extends React.Component {
 

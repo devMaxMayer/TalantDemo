@@ -16,26 +16,14 @@ export default class SignIn extends Component{
     }
 
     onLogin() {
-        let username = this.state.username;
-        let password = this.state.password;
 
-        fetch("http://10.0.2.2:8090/api/v1/auth/login", {
-            method: "POST",
-            body: JSON.stringify({
-                username: username,
-                password: password,
-            })
-        })
-            .then((response) => response.json())
-            .then((responseData) => {
-                Alert.alert(
-                    "Login Success!",
-                    "Click the button to get a Chuck Norris quote!"
-                ),
+        Alert.alert(
+            "Login Success!",
+            "Click the button to get a Chuck Norris quote!"
+        ),
 
-                Actions.toProfile({ guyName : 'Ivan Ivanov', city:'Tymen', age:'17', rate:'4730'});
-            })
-            .done();
+        Actions.toProfile({ guyName : 'Ivan Ivanov', city:'Tymen', age:'17', rate:'4730'});
+
     }
 
     onSignUp(){
