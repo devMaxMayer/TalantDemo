@@ -4,12 +4,12 @@ import { Actions } from 'react-native-router-flux';
 import {Footer} from './components/Footer';
 
 export default class CurrentEvent extends React.Component {
-    constructor(props){       
+    constructor(props){
         super(props);
         //this.props.eventItem.title = this.props.eventItem.text;
         this.props.navigation.setParams({
             title: this.props.eventItem.eventTitle,
-       });
+        });
     }
 
     render() {
@@ -41,8 +41,8 @@ export default class CurrentEvent extends React.Component {
                     <View style={styles.eventChat}>
                         <View style={styles.logoEventChat} >
                             <Image
-                                   source={require('../img/leader.png')}
-                                   style={{ width: 60, height: 60}}
+                                source={require('../img/leader.png')}
+                                style={{ width: 60, height: 60}}
                             />
                         </View>
                         <View style={styles.EventChatName}>

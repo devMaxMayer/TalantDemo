@@ -7,8 +7,8 @@ export const Footer = () => {
         <View style={styles.footerContainer}>
             <View style={styles.item}>
                 <Image
-                       source={require('../../img/events.png')}
-                       style={styles.image}
+                    source={require('../../img/events.png')}
+                    style={styles.image}
                 />
             </View>
             <View style={styles.item}>
@@ -31,7 +31,7 @@ export const Footer = () => {
             </View>
         </View>
     );
-    
+
 }
 
 
@@ -41,7 +41,7 @@ const styles = StyleSheet.create ({
         width: '100%',
         flexDirection: "row",
         //position: 'absolute',
-        
+
         //bottom:10,
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -53,11 +53,10 @@ const styles = StyleSheet.create ({
         alignItems:'center',
         justifyContent: 'center'
     },
-    image: { 
+    image: {
         flex: 1,
 
         resizeMode: 'contain'
     }
 
 })
-

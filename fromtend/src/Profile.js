@@ -8,8 +8,8 @@ export default class Profile extends React.Component {
 
     constructor(props) {
         super(props);
-        
-        this.state = { 
+
+        this.state = {
             items: [
                 {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '1', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM \n (Behavior-Driven Development Session Meeting)'},
                 {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '2', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
@@ -39,27 +39,27 @@ export default class Profile extends React.Component {
                         <Text style={styles.name}>{this.props.guyName}</Text>
                         <Text style={styles.bio}>{this.props.city}, Rus • {this.props.age} years</Text>
                         <Text style={styles.rate}> {this.props.rate} rate </Text>
-                     </View>
+                    </View>
                     <View style={styles.subTitle}>
                         <Text style={styles.subTitleText} >Progress</Text>
                     </View>
 
-                    <FlatList style={styles.itemsContainer} 
+                    <FlatList style={styles.itemsContainer}
                               data={this.state.items}
                               renderItem={({item}) => (
-                                <TouchableOpacity style={styles.item} onPress={() => this.onEventClicked(item)}>
-                                    <View style={styles.itemText}>
-                                        <Text style={styles.itemTitle}>{item.eventTitle}</Text>
-                                        <Text style={styles.itemResult}>{item.place} Place</Text>
-                                    </View>
+                                  <TouchableOpacity style={styles.item} onPress={() => this.onEventClicked(item)}>
+                                      <View style={styles.itemText}>
+                                          <Text style={styles.itemTitle}>{item.eventTitle}</Text>
+                                          <Text style={styles.itemResult}>{item.place} Place</Text>
+                                      </View>
 
-                                    <View style={styles.itemRate}>
-                                        <Text style={{color : "#14B571"}}>{item.rate} </Text>
-                                    </View>
-                                </TouchableOpacity>
-                                )}>
-                                
-                            
+                                      <View style={styles.itemRate}>
+                                          <Text style={{color : "#14B571"}}>{item.rate} </Text>
+                                      </View>
+                                  </TouchableOpacity>
+                              )}>
+
+
                     </FlatList>
 
                 </View>
@@ -148,7 +148,7 @@ const styles = StyleSheet.create ({
         paddingBottom: 10,
         borderBottomColor : 'lightgrey',
         borderBottomWidth: 0.2,
-        
+
         //flex:1
     },
     itemTitle:{
@@ -163,7 +163,7 @@ const styles = StyleSheet.create ({
     },
     itemText:{
         flex:0.9,
-        
+
     },
     itemRate: {
         flex: 0.2,
@@ -181,6 +181,6 @@ const styles = StyleSheet.create ({
         shadowRadius: 8.30,
         //elevation: 13,
         marginTop: 4,
-        
+
     }
 })
