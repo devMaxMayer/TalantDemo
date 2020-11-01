@@ -1,24 +1,30 @@
 import React, { useState} from 'react'
 import { View, StyleSheet, Text, Image, ScrollView, FlatList  } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Actions } from 'react-native-router-flux';
 import {Footer} from "./components/Footer";
 
 export default class Profile extends React.Component {
 
     constructor(props) {
         super(props);
-        
-        this.state = { 
+
+        this.state = {
             items: [
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '1'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '2'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '3'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '4'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '5'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '6'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '7'},
-                {text: 'October Java Contest', place: 'I', rate: '+132', key: '8'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '1', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM \n (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '2', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '3', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '4', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '5', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '6', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '7', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
+                {eventTitle: 'October Java Contest', place: 'I', rate: '+132', key: '8', city: 'Murmansk', place: 'Pushkina st.', time: '08:00', date: '02.02.2020', type: 'BDDSM (Behavior-Driven Development Session Meeting)'},
             ]
         };
+    }
+
+    onEventClicked(event){
+        Actions.toEvent({eventItem: event});
     }
 
     render() {
@@ -30,30 +36,30 @@ export default class Profile extends React.Component {
                                source={require('../img/avatar.png')}
                                style={{ width: 120, height: 120}}
                         />
-                        <Text style={styles.name}>{this.props.name}</Text>
+                        <Text style={styles.name}>{this.props.guyName}</Text>
                         <Text style={styles.bio}>{this.props.city}, Rus • {this.props.age} years</Text>
                         <Text style={styles.rate}> {this.props.rate} rate </Text>
-                     </View>
+                    </View>
                     <View style={styles.subTitle}>
                         <Text style={styles.subTitleText} >Progress</Text>
                     </View>
 
-                    <FlatList style={styles.itemsContainer} 
+                    <FlatList style={styles.itemsContainer}
                               data={this.state.items}
                               renderItem={({item}) => (
-                                <View style={styles.item}>
-                                    <View style={styles.itemText}>
-                                        <Text style={styles.itemTitle}>{item.text}</Text>
-                                        <Text style={styles.itemResult}>{item.place} Place</Text>
-                                    </View>
+                                  <TouchableOpacity style={styles.item} onPress={() => this.onEventClicked(item)}>
+                                      <View style={styles.itemText}>
+                                          <Text style={styles.itemTitle}>{item.eventTitle}</Text>
+                                          <Text style={styles.itemResult}>{item.place} Place</Text>
+                                      </View>
 
-                                    <View style={styles.itemRate}>
-                                        <Text style={{color : "#14B571"}}>{item.rate} </Text>
-                                    </View>
-                                </View>
-                                )}>
-                                
-                            
+                                      <View style={styles.itemRate}>
+                                          <Text style={{color : "#14B571"}}>{item.rate} </Text>
+                                      </View>
+                                  </TouchableOpacity>
+                              )}>
+
+
                     </FlatList>
 
                 </View>
@@ -142,7 +148,7 @@ const styles = StyleSheet.create ({
         paddingBottom: 10,
         borderBottomColor : 'lightgrey',
         borderBottomWidth: 0.2,
-        
+
         //flex:1
     },
     itemTitle:{
@@ -157,7 +163,7 @@ const styles = StyleSheet.create ({
     },
     itemText:{
         flex:0.9,
-        
+
     },
     itemRate: {
         flex: 0.2,
@@ -173,7 +179,8 @@ const styles = StyleSheet.create ({
         },
         shadowOpacity: 0.39,
         shadowRadius: 8.30,
-        elevation: 13,
+        //elevation: 13,
         marginTop: 4,
+
     }
 })

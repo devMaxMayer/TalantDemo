@@ -7,8 +7,8 @@ export const Footer = () => {
         <View style={styles.footerContainer}>
             <View style={styles.item}>
                 <Image
-                       source={require('../../img/events.png')}
-                       style={styles.image}
+                    source={require('../../img/events.png')}
+                    style={styles.image}
                 />
             </View>
             <View style={styles.item}>
@@ -31,27 +31,32 @@ export const Footer = () => {
             </View>
         </View>
     );
-    
+
 }
 
 
 const styles = StyleSheet.create ({
     footerContainer: {
+        height: '100%',
         width: '100%',
         flexDirection: "row",
-        position: 'absolute',
-        bottom:10,
-        justifyContent: "space-evenly"
+        //position: 'absolute',
+
+        //bottom:10,
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     item: {
-        flex: 0.25,
-        paddingLeft: 30
+        flex: 1,
+        padding: 30,
+        flexDirection: "row",
+        alignItems:'center',
+        justifyContent: 'center'
     },
-    image: { 
-        width: 34,
-        height: 34,
-        resizeMode:"contain"
+    image: {
+        flex: 1,
+
+        resizeMode: 'contain'
     }
 
 })
-
